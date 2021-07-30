@@ -1,5 +1,18 @@
 // Google JavaScript Style Guide (https://google.github.io/styleguide/jsguide.html)
 
+/*
+TO DOs
+1. Take command line arg for text orientaion i.e. landscape or portrait
+2. Apply Hough Transform to reduce the number of images to perform character detection from 4 to 2
+3. Apply object detection to count the number of recognised chracters
+4. Compare the results from the two chosen images and pick the one with most score
+5. Determine the rotation degree and rotate
+
+// Tried https://www.npmjs.com/package/tesseract.js
+// Whether text orientation is up-side-down or on the side in the image, Tesseract still output giberlish Japanese
+
+*/
+
 import * as fileFunctions from './utils/fileSystemFunctions'
 import {
   readdirSync,
@@ -13,14 +26,14 @@ import {
 // Due to the incompatibility of CommonJS and ES6 and lack of another transpiler, Babel, that converts `import` to `require`.
 const sharp = require('sharp')
 
-const srcDirPath = '/home/to/Desktop/pic_test/'
+const srcDirPath = '/home/to/Desktop/k1/'
 const destDirPath = './processed/'
 
 type ImageFile = {
   srcFilePathAndName: string,
   processedFilePathAndName: string,
   fileExtention: string,
-  changeTime: number
+  modifiedTime: number
 }
 
 const processedDirPath =
@@ -42,7 +55,7 @@ readdirSync(srcDirPath, { withFileTypes: true }).forEach((dirObj) => {
       srcFilePathAndName: srcFilePathAndName,
       processedFilePathAndName: fileFunctions.getAbsolutePath(processedDirPath, imageFileName),
       fileExtention: fileExtension,
-      changeTime: statSync(srcFilePathAndName).ctimeMs
+      modifiedTime: statSync(srcFilePathAndName).mtimeMs // ctimeMs is not reliable
     }
 
     imageFileArray.push(imageFile)
@@ -50,7 +63,7 @@ readdirSync(srcDirPath, { withFileTypes: true }).forEach((dirObj) => {
 })
 
 const imageFileArraySorted =
-  imageFileArray.sort((a, b) => a.changeTime - b.changeTime)
+  imageFileArray.sort((a, b) => a.modifiedTime - b.modifiedTime)
 
 const imageFileCount = imageFileArray.length
 
