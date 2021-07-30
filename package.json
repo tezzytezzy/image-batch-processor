@@ -1,7 +1,7 @@
 {
-  "name": "eslint-test",
+  "name": "image-batch-processor",
   "version": "1.0.0",
-  "description": "eslint_test",
+  "description": "image-batch-processor",
   "main": "index.js",
   "scripts": {
     "test": "tryme"
@@ -17,7 +17,6 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
-    "prettier": "2.3.2",
     "typescript": "^4.1.3"
   },
   "dependencies": {
