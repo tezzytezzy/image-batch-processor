@@ -16,3 +16,7 @@ v14.15.4
 (base) to@mx:~$ cmake --version
 cmake version 3.9.5
 ```
+## References
+[The Digital Imaging and Vision Applications in Science (DIVAS) project](https://datacarpentry.org/image-processing/)  
+[LearnOpenCV](https://learnopencv.com/getting-started-with-opencv/)  
+[MathWorks](https://www.mathworks.com/help/images/morphological-dilation-and-erosion.html)
